@@ -70,7 +70,7 @@ class PostageApp::Request
           )
         )
 
-      rescue TimeoutError, Errno::ECONNREFUSED => e
+      rescue TimeoutError, Errno::ECONNREFUSED, Errno::EHOSTUNREACH => e
         e
       end
     
