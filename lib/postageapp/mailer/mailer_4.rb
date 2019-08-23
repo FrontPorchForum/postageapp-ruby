@@ -238,6 +238,7 @@ class PostageApp::Request
 
     if (@delivery_method == Mail::TestMailer)
       @delivery_method.deliveries << self
+      self.test_return_value
     else
       self.send
     end
@@ -247,5 +248,10 @@ class PostageApp::Request
   # Allows overriding the delivery method setting
   def delivery_method(method = nil, settings = nil)
     @delivery_method = method
+  end
+
+  # Return list of ActionMailer deliveries. Easily mockable return value in tests
+  def test_return_value
+    @delivery_method.deliveries
   end
 end
